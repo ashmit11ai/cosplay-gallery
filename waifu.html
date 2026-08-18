@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>🌸 Cosplay Waifu Zone 🌸</title>
+    <!-- Import cute, rounded Google Fonts for a gorgeous kawaii anime aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style type="text/css" media="all">
+      body {
+        background-color: #f7dff0;
+        /* Kawaii pastel polka-dot grid design background texture overlay */
+        background-image: radial-gradient(#fff 20%, transparent 20%), radial-gradient(#fff 20%, transparent 20%);
+        background-size: 40px 40px;
+        background-position: 0 0, 20px 20px;
+        font-family: 'Quicksand', sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: #6d5b6b;
+      }
+      
+      h1, h2 {
+        font-family: 'Mochiy Pop One', sans-serif;
+        text-align: center;
+        color: #ff7ebb;
+        text-shadow: 2px 2px 0px #fff;
+        margin-bottom: 5px;
+        text-decoration: none;
+      }
+
+      h1 { font-size: 2.5rem; margin-top: 10px; }
+      h2 { font-size: 1.2rem; color: #a491a2; font-weight: normal; margin-bottom: 20px; }
+
+      .kawaii-divider {
+        text-align: center;
+        margin: 10px auto 20px auto;
+        color: #ff9ebb;
+        font-size: 18px;
+        letter-spacing: 5px;
+      }
+
+      /* Core side-by-side positioning container */
+      .main-layout {
+        display: flex;
+        gap: 25px;
+        max-width: 1350px;
+        margin: 0 auto;
+        align-items: flex-start;
+      }
+
+      /* Thumbnail grid container */
+      .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 15px;
+        flex: 1.2;
+      }
+
+      /* Card styles for thumbnail blocks */
+      .column {
+        background: rgba(255, 255, 255, 0.6);
+        border: 3px dashed #ffb7d5;
+        border-radius: 20px;
+        padding: 8px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+      }
+
+      .column:hover {
+        border-style: solid;
+        border-color: #ff7ebb;
+        background: #fff;
+        transform: translateY(-4px);
+      }
+
+      /* Thumbnail image styles */
+      .column img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: transform 0.2s, opacity 0.2s;
+        border-radius: 12px;
+      }
+
+      .column img:hover {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      /* Right Sidebar Layout Track */
+      .right-sidebar {
+        position: sticky;
+        top: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* Kawaii Cherry-Blossom theme Decorated Biodata Card */
+      .biodata-card {
+        background: rgba(255, 255, 255, 0.85);
+        border: 4px solid #fff;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(247, 191, 220, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .biodata-card::before {
+        content: "🌸";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 20px;
+        opacity: 0.7;
+      }
+      .biodata-card::after {
+        content: "✨";
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 20px;
+        opacity: 0.7;
+      }
+
+      .biodata-title {
+        font-family: 'Mochiy Pop One', sans-serif;
+        font-size: 1.1rem;
+        color: #ff6ba9;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 15px;
+        border-bottom: 2px dotted #ffb7d5;
+        padding-bottom: 8px;
+      }
+
+      .biodata-grid {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 8px 15px;
+        font-size: 15px;
+      }
+
+      .bio-label {
+        font-weight: bold;
+        color: #ff7ebb;
+        text-align: right;
+      }
+
+      .bio-val {
+        color: #6d5b6b;
+      }
+
+      /* Right Expanded Image Display Box */
+      .container {
+        display: none;
+        background: rgba(255, 255, 255, 0.85);
+        border: 4px solid #fff;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(247, 191, 220, 0.4);
+        text-align: center;
+        position: relative;
+      }
+
+      #expandedImg {
+        max-width: 100%;
+        height: auto;
+        max-height: 52vh;
+        border-radius: 16px;
+        display: block;
+        margin: 0 auto;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      }
+
+      #imgtext {
+        font-family: 'Mochiy Pop One', sans-serif;
+        margin-top: 15px;
+        color: #ff6ba9;
+        font-size: 15px;
+      }
+
+      .closebtn {
+        position: absolute;
+        top: 8px;
+        right: 18px;
+        color: #ff9ebb;
+        font-size: 35px;
+        cursor: pointer;
+        transition: color 0.2s, transform 0.2s;
+        line-height: 1;
+        z-index: 5;
+      }
+      
+      .closebtn:hover {
+        color: #ff4791;
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>✨ COSPLAY GALLERY 🤤✨</h1>
+    <div class="kawaii-divider">🌸 ━━━ くりっく ━━━ 🌸</div>
+    <h2>(｡♥‿♥｡) click an image to zoom (｡♥‿♥｡)</h2>
+
+    <!-- Layout Container Wrapper -->
+    <div class="main-layout">
+      
+      <!-- Left Sidebar: Thumbnail Grid -->
+      <div class="row">
+        <div class="column">
+          <img src="1.jpg" alt="✨ Sweet Maid Cosplay ✨" 
+               data-name="Chumi-chan 💕" data-height="156 cm (5'1&quot;)" data-likes="Strawberry Milk tea, Gaming, Gacha 🍓" data-hobby="Sewing cute matching outfits ✨" data-status="Streaming soon! 📡" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="2.jpg" alt="🌸 Pastel Kimono Look 🌸" 
+               data-name="Sakura-chan 🌸" data-height="158 cm (5'2&quot;)" data-likes="Green Tea, Hanami Festivals 🍡" data-hobby="Traditional Dance 🩰" data-status="Taking photos 📸" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="3.jpg" alt="💫 Magical Girl Style 💫" 
+               data-name="Hoshiko ✨" data-height="152 cm (5'0&quot;)" data-likes="Star Candy, Cute Mascots 🌟" data-hobby="Stargazing 🔭" data-status="Saving the world 🌙" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="4.jpg" alt="🎀 Classic School Uniform 🎀" 
+               data-name="Rin-chan 🎀" data-height="160 cm (5'3&quot;)" data-likes="Melon Soda, Bakery Sweets 🍈" data-hobby="Reading Light Novels 📚" data-status="Studying... 📝" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="5.jpg" alt="💖 Idol Stage Outfit 💖" 
+               data-name="Miku-tan 🎤" data-height="155 cm (5'1&quot;)" data-likes="Live Shows, Glowsticks 🌈" data-hobby="Singing & J-Pop Dancing 💃" data-status="On Stage! 🎵" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="6.jpg" alt="⭐ Cyberpunk Bunny Suit ⭐" 
+               data-name="Cyber Bunny ⚡" data-height="167 cm (5'6&quot;)" data-likes="Energy Drinks, Retro Arcade 🕹️" data-hobby="Hacking & Modding 💻" data-status="Online 🟢" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="7.jpg" alt="🍡 Neko Maid Style 🍡" 
+               data-name="Nyan-Nyan 🐾" data-height="148 cm (4'10&quot;)" data-likes="Fish Snacks, Soft Cushions 🐟" data-hobby="Taking Warm Naps 💤" data-status="Purring happily ✨" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="8.jpg" alt="🦄 Fairy Kei Aesthetic 🦄" 
+               data-name="Momo-chan 🦄" data-height="153 cm (5'0&quot;)" data-likes="Cotton Candy, Pastel Pins 🍬" data-hobby="Thrift Shopping 🛍️" data-status="Collecting Plushies 🧸" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="9.jpg" alt="🔮 Dark Gothic Lolita 🔮" 
+               data-name="Kuroi 🖤" data-height="159 cm (5'2&quot;)" data-likes="Black Tea, Velvet Ribbons ☕" data-hobby="Writing Poetry ✍️" data-status="Daydreaming 💭" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="10.jpg" alt="🍰 Strawberry Princess 🍰" 
+               data-name="Hime-sama 👑" data-height="154 cm (5'0&quot;)" data-likes="Shortcake, Macarons 🍰" data-hobby="Baking Treats 🥞" data-status="Eating sweets 😋" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="11.jpg" alt="🐾 Fox Spirit Kitsune 🐾" 
+               data-name="Yumi-kitsune 🦊" data-height="162 cm (5'4&quot;)" data-likes="Inari Sushi, Golden Bells 🔔" data-hobby="Shrine Walks ⛩️" data-status="Feeling Mischievous 🦊" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="12.jpg" alt="🌊 Summer Swimsuit Cos 🌊" 
+               data-name="Nami-chan 🏖️" data-height="165 cm (5'5&quot;)" data-likes="Shaved Ice, Beach Volleyball 🍧" data-hobby="Swimming 🏊‍♀️" data-status="Sunbathing ☀️" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="13.jpg" alt="🍂 Autumn Kimono Vibe 🍂" 
+               data-name="Kaede 🍁" data-height="161 cm (5'3&quot;)" data-likes="Chestnuts, Cozy Scarves 🌰" data-hobby="Photography 📷" data-status="Walking in the park 🍂" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="14.jpg" alt="🌙 Moon Princess Uniform 🌙" 
+               data-name="Luna 🌙" data-height="157 cm (5'2&quot;)" data-likes="Crepes, Silver Accessories 🥞" data-hobby="Ballet Dancing 🩰" data-status="Looking at Stars 🌌" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="15.jpg" alt="🎨 Art Class Casual Look 🎨" 
+               data-name="Mei-Mei 🎨" data-height="156 cm (5'1&quot;)" data-likes="Watercolors, Smooth Paper 🖌️" data-hobby="Sketching People 📓" data-status="In the Studio 🎨" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="16.jpg" alt="🎮 Retro Arcade Gamer 🎮" 
+               data-name="Pixel-chan 👾" data-height="150 cm (4'11&quot;)" data-likes="Chiptunes, Spicy Chips 🍟" data-hobby="Speedrunning Games 🕹️" data-status="Chasing a high score! 🏆" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="17.jpg" alt="🍬 Candy Pop Paradise 🍬" 
+               data-name="Amai 🍭" data-height="154 cm (5'0&quot;)" data-likes="Gummy Bears, Lollipop Art 🍬" data-hobby="Making TikTok Clips 📱" data-status="Hyperactive Mode ⚡" 
+               onclick="myFunction(this);">
+        </div>
+        <div class="column">
+          <img src="18.jpg" alt="❄️ Winter Coat Outfit ❄️" 
+               data-name="Yuki ❄️" data-height="158 cm (5'2&quot;)" data-likes="Hot Chocolate, Soft Snow ☕" data-hobby="Ice Skating ⛸️" data-status="Chilling out ⛄" 
+               onclick="myFunction(this);">
+        </div>
+  <div class="column">
+          <img src="19.jpg" alt="✨ Sweet Maid Cosplay ✨" 
+               data-name="Chumi-chan 💕" data-height="156 cm (5'1&quot;)" data-likes="Strawberry Milk tea, Gaming, Gacha 🍓" data-hobby="Sewing cute matching outfits ✨" data-status="Streaming soon! 📡" 
+               onclick="myFunction(this);">
+        </div>
+  <div class="column">
+          <img src="20.jpg" alt="✨ Sweet Maid Cosplay ✨" 
+               data-name="Chumi-chan 💕" data-height="156 cm (5'1&quot;)" data-likes="Strawberry Milk tea, Gaming, Gacha 🍓" data-hobby="Sewing cute matching outfits ✨" data-status="Streaming soon! 📡" 
+               onclick="myFunction(this);">
+        </div>
+      </div>
+
+      <!-- Right Sidebar Layout Column -->
+      <div class="right-sidebar">
+        <div class="biodata-card">
+          <div class="biodata-title">プロフィール (Profile)</div>
+          <div class="biodata-grid">
+            <div class="bio-label">Name:</div>
+            <div class="bio-val" id="bioName">Click an image! 💕</div>
+            
+            <div class="bio-label">Height:</div>
+            <div class="bio-val" id="bioHeight">--</div>
+            
+            <div class="bio-label">Likes:</div>
+            <div class="bio-val" id="bioLikes">--</div>
+            
+            <div class="bio-label">Hobby:</div>
+            <div class="bio-val" id="bioHobby">--</div>
+            
+            <div class="bio-label">Status:</div>
+            <div class="bio-val" id="bioStatus">--</div>
+          </div>
+        </div>
+
+        <div class="container" id="previewContainer">
+          <span onclick="closePreview()" class="closebtn">&times;</span>
+          <img id="expandedImg">
+          <div id="imgtext"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+    function myFunction(imgs) {
+      var expandImg = document.getElementById("expandedImg");
+      var imgText = document.getElementById("imgtext");
+      var previewContainer = document.getElementById("previewContainer");
+      
+      // Update preview photo and label element text
+      expandImg.src = imgs.src;
+      imgText.innerHTML = imgs.alt;
+      
+      // Live-update specific dataset attributes to match the selected image element properties
+      document.getElementById("bioName").innerHTML = imgs.getAttribute("data-name") || "Click an image! 💕";
+      document.getElementById("bioHeight").innerHTML = imgs.getAttribute("data-height") || "--";
+      document.getElementById("bioLikes").innerHTML = imgs.getAttribute("data-likes") || "--";
+      document.getElementById("bioHobby").innerHTML = imgs.getAttribute("data-hobby") || "--";
+      document.getElementById("bioStatus").innerHTML = imgs.getAttribute("data-status") || "--";
+      
+      // Reveal the container element seamlessly
+      previewContainer.style.display = "block";
+    }
+
+    function closePreview() {
+      // Hide the expand view box channel seamlessly
+      document.getElementById("previewContainer").style.display = 'none';
+      
+      // Wipe character variables string tracks back onto clean baseline placeholders
+      document.getElementById("bioName").innerHTML = "Click an image! 💕";
+      document.getElementById("bioHeight").innerHTML = "--";
+      document.getElementById("bioLikes").innerHTML = "--";
+      document.getElementById("bioHobby").innerHTML = "--";
+      document.getElementById("bioStatus").innerHTML = "--";
+    }
+    </script>
+  </body>
+</html>
